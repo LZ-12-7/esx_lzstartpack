@@ -21,23 +21,18 @@ local Keys = {
 Citizen.CreateThread(function()
     SpawnNPC("a_m_m_soucent_01", vector4(-267.190, -969.322, 30.225, 294.24179))
     while true do
-        local letSleep = false
+        local sleep = 1000
         local ped = PlayerPedId()
         local pedpos = GetEntityCoords(ped)
 
         if #(pedpos - vector3(-267.190, -969.322, 30.225)) < 2 then
-            _s = 0
+            sleep = 0
             DrawText3D(vector3(-267.190, -969.322, 32.225), "Pulsa ~w~[~y~E~w~] Para agarrar el pack de inicio")
             if IsControlJustPressed(1, Keys['E']) then
                 TriggerServerEvent('esx_lzstartpack:checkStartPack', PlayerId)
             end
         end
-
-        if letSleep then
-            Citizen.Wait(1000)
-        else
-            Citizen.Wait(0)
-        end
+      Citizen.Wait(sleep)
     end
 end)
 
